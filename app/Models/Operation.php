@@ -6,17 +6,31 @@ use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class Operation
- * @package App\Models
- * @version January 1, 2019, 1:52 pm UTC
- *
- * @property \App\Models\CompteMonetaire compteMonetaire
- * @property \Illuminate\Database\Eloquent\Collection participation
- * @property \Illuminate\Database\Eloquent\Collection roleHasPermissions
- * @property string libelle
- * @property string mot
- * @property integer compte_monetaire_id
- * @property string type
+ * @SWG\Definition(
+ *      definition="Operation",
+ *      required={""},
+ *      @SWG\Property(
+ *          property="libelle",
+ *          description="libelle",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="mot",
+ *          description="mot",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="compte_monetaire_id",
+ *          description="compte_monetaire_id",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="type",
+ *          description="type",
+ *          type="string"
+ *      )
+ * )
  */
 class Operation extends Model
 {

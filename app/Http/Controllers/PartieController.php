@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\DataTables\PartieDataTable;
-use App\Http\Requests;
 use App\Http\Requests\CreatePartieRequest;
 use App\Http\Requests\UpdatePartieRequest;
 use App\Repositories\PartieRepository;
-use Flash;
 use App\Http\Controllers\AppBaseController;
+use Illuminate\Http\Request;
+use Flash;
+use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
 class PartieController extends AppBaseController
@@ -24,12 +24,16 @@ class PartieController extends AppBaseController
     /**
      * Display a listing of the Partie.
      *
-     * @param PartieDataTable $partieDataTable
+     * @param Request $request
      * @return Response
      */
-    public function index(PartieDataTable $partieDataTable)
+    public function index(Request $request)
     {
-        return $partieDataTable->render('parties.index');
+        $this->partieRepository->pushCriteria(new RequestCriteria($request));
+        $parties = $this->partieRepository->paginate(25);
+
+        return view('parties.index')
+            ->with('parties', $parties);
     }
 
     /**

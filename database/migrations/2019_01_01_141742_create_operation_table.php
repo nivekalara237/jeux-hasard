@@ -14,7 +14,7 @@ class CreateOperationTable extends Migration {
 	{
 		Schema::create('operation', function(Blueprint $table)
 		{
-			$table->bigInteger('id')->primary();
+			$table->bigIncrements('id');
 			$table->string('libelle');
 			$table->text('mot', 65535)->nullable();
 			$table->integer('compte_monetaire_id')->index('compte_monetaire_id');

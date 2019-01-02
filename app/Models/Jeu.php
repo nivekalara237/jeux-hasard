@@ -6,17 +6,44 @@ use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class Jeu
- * @package App\Models
- * @version January 1, 2019, 1:49 pm UTC
- *
- * @property \Illuminate\Database\Eloquent\Collection participation
- * @property \Illuminate\Database\Eloquent\Collection roleHasPermissions
- * @property string libelle
- * @property string description
- * @property integer max_joueur
- * @property integer min_joueur
- * @property float mise_unitaire
+ * @SWG\Definition(
+ *      definition="Jeu",
+ *      required={""},
+ *      @SWG\Property(
+ *          property="id",
+ *          description="id",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="libelle",
+ *          description="libelle",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="description",
+ *          description="description",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="max_joueur",
+ *          description="max_joueur",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="min_joueur",
+ *          description="min_joueur",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="mise_unitaire",
+ *          description="mise_unitaire",
+ *          type="number",
+ *          format="float"
+ *      )
+ * )
  */
 class Jeu extends Model
 {
@@ -62,5 +89,11 @@ class Jeu extends Model
         
     ];
 
-    
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
+    public function parties()
+    {
+        return $this->hasMany(\App\Models\Partie::class);
+    }
 }

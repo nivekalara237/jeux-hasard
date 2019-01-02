@@ -14,7 +14,7 @@ class CreateCompteMonetaireTable extends Migration {
 	{
 		Schema::create('compte_monetaire', function(Blueprint $table)
 		{
-			$table->integer('id')->primary();
+			$table->increments('id');
 			$table->float('solde', 10, 0)->default(0);
 			$table->enum('type_paiement', array('OM','momo','carte','espace'))->default('espace');
 			$table->bigInteger('joueur_id')->index('joueur_id');

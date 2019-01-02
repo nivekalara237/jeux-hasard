@@ -8,7 +8,7 @@ use InfyOm\Generator\Common\BaseRepository;
 /**
  * Class JeuRepository
  * @package App\Repositories
- * @version January 1, 2019, 1:49 pm UTC
+ * @version January 2, 2019, 8:55 pm UTC
  *
  * @method Jeu findWithoutFail($id, $columns = ['*'])
  * @method Jeu find($id, $columns = ['*'])

@@ -14,7 +14,7 @@ class CreatePartieTable extends Migration {
 	{
 		Schema::create('partie', function(Blueprint $table)
 		{
-			$table->integer('id')->primary();
+			$table->increments('id');
 			$table->string('libelle');
 			$table->text('description', 65535)->nullable();
 			$table->integer('jeu_id')->index('jeu_id');

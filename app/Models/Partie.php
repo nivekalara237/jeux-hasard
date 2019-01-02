@@ -8,9 +8,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class Partie
  * @package App\Models
- * @version January 1, 2019, 1:54 pm UTC
+ * @version January 2, 2019, 8:50 pm UTC
  *
  * @property \App\Models\User user
+ * @property \App\Models\Jeu jeu
  * @property \Illuminate\Database\Eloquent\Collection Participation
  * @property \Illuminate\Database\Eloquent\Collection roleHasPermissions
  * @property string libelle
@@ -68,6 +69,14 @@ class Partie extends Model
     public function user()
     {
         return $this->belongsTo(\App\Models\User::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function jeu()
+    {
+        return $this->belongsTo(\App\Models\Jeu::class);
     }
 
     /**

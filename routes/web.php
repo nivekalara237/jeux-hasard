@@ -19,9 +19,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-
-Auth::routes();
-
 Route::get('/home', 'HomeController@index');
 
 Route::resource('jeus', 'JeuController');
@@ -33,3 +30,5 @@ Route::resource('participations', 'ParticipationController');
 Route::resource('parties', 'PartieController');
 
 Route::resource('users', 'UserController');
+
+Route::resource('parties', 'PartieController');

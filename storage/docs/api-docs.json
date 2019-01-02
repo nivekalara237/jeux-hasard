@@ -1,0 +1,92 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Laravel Generator APIs",
+        "version": "1.0.0"
+    },
+    "basePath": "/api/v1",
+    "paths": {},
+    "definitions": {
+        "Jeu": {
+            "required": [
+                ""
+            ],
+            "properties": {
+                "id": {
+                    "description": "id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "libelle": {
+                    "description": "libelle",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "description",
+                    "type": "string"
+                },
+                "max_joueur": {
+                    "description": "max_joueur",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "min_joueur": {
+                    "description": "min_joueur",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "mise_unitaire": {
+                    "description": "mise_unitaire",
+                    "type": "number",
+                    "format": "float"
+                }
+            }
+        },
+        "Operation": {
+            "required": [
+                ""
+            ],
+            "properties": {
+                "libelle": {
+                    "description": "libelle",
+                    "type": "string"
+                },
+                "mot": {
+                    "description": "mot",
+                    "type": "string"
+                },
+                "compte_monetaire_id": {
+                    "description": "compte_monetaire_id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "type": {
+                    "description": "type",
+                    "type": "string"
+                }
+            }
+        },
+        "Participation": {
+            "required": [
+                ""
+            ],
+            "properties": {
+                "id": {
+                    "description": "id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "mise": {
+                    "description": "mise",
+                    "type": "number",
+                    "format": "float"
+                },
+                "partie_id": {
+                    "description": "partie_id",
+                    "type": "integer",
+                    "format": "int32"
+                }
+            }
+        }
+    }
+}

@@ -6,17 +6,28 @@ use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class Participation
- * @package App\Models
- * @version January 1, 2019, 1:52 pm UTC
- *
- * @property \App\Models\Partie partie
- * @property \App\Models\User user
- * @property \Illuminate\Database\Eloquent\Collection roleHasPermissions
- * @property float mise
- * @property bigInteger joueur_id
- * @property integer partie_id
- * @property string|\Carbon\Carbon upated_at
+ * @SWG\Definition(
+ *      definition="Participation",
+ *      required={""},
+ *      @SWG\Property(
+ *          property="id",
+ *          description="id",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="mise",
+ *          description="mise",
+ *          type="number",
+ *          format="float"
+ *      ),
+ *      @SWG\Property(
+ *          property="partie_id",
+ *          description="partie_id",
+ *          type="integer",
+ *          format="int32"
+ *      )
+ * )
  */
 class Participation extends Model
 {

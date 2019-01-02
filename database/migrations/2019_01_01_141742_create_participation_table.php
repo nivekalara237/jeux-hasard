@@ -14,7 +14,7 @@ class CreateParticipationTable extends Migration {
 	{
 		Schema::create('participation', function(Blueprint $table)
 		{
-			$table->integer('id')->primary();
+			$table->increments('id');
 			$table->float('mise', 10, 0);
 			$table->bigInteger('joueur_id')->index('joueur_id');
 			$table->integer('partie_id')->index('partie_id');

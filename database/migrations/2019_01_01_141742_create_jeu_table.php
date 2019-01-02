@@ -14,7 +14,7 @@ class CreateJeuTable extends Migration {
 	{
 		Schema::create('jeu', function(Blueprint $table)
 		{
-			$table->integer('id')->primary();
+			$table->increments('id');
 			$table->string('libelle')->unique('libelle');
 			$table->text('description', 65535)->nullable();
 			$table->integer('max_joueur')->nullable();

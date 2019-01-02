@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\DataTables\OperationDataTable;
-use App\Http\Requests;
 use App\Http\Requests\CreateOperationRequest;
 use App\Http\Requests\UpdateOperationRequest;
 use App\Repositories\OperationRepository;
-use Flash;
 use App\Http\Controllers\AppBaseController;
+use Illuminate\Http\Request;
+use Flash;
+use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
 class OperationController extends AppBaseController
@@ -24,12 +24,16 @@ class OperationController extends AppBaseController
     /**
      * Display a listing of the Operation.
      *
-     * @param OperationDataTable $operationDataTable
+     * @param Request $request
      * @return Response
      */
-    public function index(OperationDataTable $operationDataTable)
+    public function index(Request $request)
     {
-        return $operationDataTable->render('operations.index');
+        $this->operationRepository->pushCriteria(new RequestCriteria($request));
+        $operations = $this->operationRepository->paginate(10);
+
+        return view('operations.index')
+            ->with('operations', $operations);
     }
 
     /**

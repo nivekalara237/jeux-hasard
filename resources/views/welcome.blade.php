@@ -4,11 +4,12 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
-
+        <title>{{config("app.name")}}</title>
+        <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="img/favicon.ico" type="image/x-icon">
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
-
+        <link rel="stylesheet" href="{{asset('css/style.css')}}">
         <!-- Styles -->
         <style>
             html, body {
@@ -50,47 +51,80 @@
 
             .links > a {
                 color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
+                /*padding: 0 25px;
+                font-size: 13px;*/
                 font-weight: 600;
                 letter-spacing: .1rem;
                 text-decoration: none;
-                text-transform: uppercase;
+                /*text-transform: uppercase;*/
             }
 
             .m-b-md {
                 margin-bottom: 30px;
             }
+
+            .button {
+                background-color: #4CAF50; /* Green */
+                border: none;
+                color: white!important;
+                padding: 16px 62px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 14px 12px;
+                -webkit-transition-duration: 0.4s; /* Safari */
+                transition-duration: 0.4s;
+                cursor: pointer;
+            }
+
+            .button2 {
+                background-color: #008CBA; 
+                color: white; 
+                border: 2px solid #008CBA;
+            }
+
+            .button2:hover {
+                background-color: white;
+                color: #008CBA!important;
+            }
+
+            .button3 {
+                background-color: #f44336; 
+                color: white; 
+                border: 2px solid #f44336;
+            }
+
+            .button3:hover {
+                background-color: white;
+                color: #f44336!important;
+            }
         </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
+        <div class="flex-center position-ref full-height bg-image">
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ url('/home') }}">Accueil</a>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
+                        <a href="{{ route('login') }}">Connexion</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
+                            <a href="{{ route('register') }}">S'enregistrer</a>
                         @endif
                     @endauth
                 </div>
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
-                    Laravel
+                <div style="display:none" class="title m-b-md">
+                    Casino
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    <a class="button button2" href="{{url("control")}}">Administration</a>
+                    <a class="button button3" href="{{route('register')}}">connexion</a>
                 </div>
             </div>
         </div>

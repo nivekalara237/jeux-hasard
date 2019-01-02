@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\DataTables\JeuDataTable;
-use App\Http\Requests;
 use App\Http\Requests\CreateJeuRequest;
 use App\Http\Requests\UpdateJeuRequest;
 use App\Repositories\JeuRepository;
-use Flash;
 use App\Http\Controllers\AppBaseController;
+use Illuminate\Http\Request;
+use Flash;
+use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
 class JeuController extends AppBaseController
@@ -24,12 +24,16 @@ class JeuController extends AppBaseController
     /**
      * Display a listing of the Jeu.
      *
-     * @param JeuDataTable $jeuDataTable
+     * @param Request $request
      * @return Response
      */
-    public function index(JeuDataTable $jeuDataTable)
+    public function index(Request $request)
     {
-        return $jeuDataTable->render('jeus.index');
+        $this->jeuRepository->pushCriteria(new RequestCriteria($request));
+        $jeus = $this->jeuRepository->paginate(25);
+
+        return view('jeus.index')
+            ->with('jeus', $jeus);
     }
 
     /**

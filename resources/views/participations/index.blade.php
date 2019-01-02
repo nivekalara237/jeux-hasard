@@ -20,6 +20,8 @@
         </div>
         <div class="text-center">
         
+        @include('adminlte-templates::common.paginate', ['records' => $participations])
+
         </div>
     </div>
 @endsection

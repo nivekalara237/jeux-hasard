@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\DataTables\ParticipationDataTable;
-use App\Http\Requests;
 use App\Http\Requests\CreateParticipationRequest;
 use App\Http\Requests\UpdateParticipationRequest;
 use App\Repositories\ParticipationRepository;
-use Flash;
 use App\Http\Controllers\AppBaseController;
+use Illuminate\Http\Request;
+use Flash;
+use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
 class ParticipationController extends AppBaseController
@@ -24,12 +24,16 @@ class ParticipationController extends AppBaseController
     /**
      * Display a listing of the Participation.
      *
-     * @param ParticipationDataTable $participationDataTable
+     * @param Request $request
      * @return Response
      */
-    public function index(ParticipationDataTable $participationDataTable)
+    public function index(Request $request)
     {
-        return $participationDataTable->render('participations.index');
+        $this->participationRepository->pushCriteria(new RequestCriteria($request));
+        $participations = $this->participationRepository->paginate(25);
+
+        return view('participations.index')
+            ->with('participations', $participations);
     }
 
     /**
