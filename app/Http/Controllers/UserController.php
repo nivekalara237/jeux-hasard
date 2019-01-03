@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class UserController extends AppBaseController
 {
@@ -31,9 +33,9 @@ class UserController extends AppBaseController
     {
         $this->userRepository->pushCriteria(new RequestCriteria($request));
         $users = $this->userRepository->paginate(10);
-
+        
         return view('users.index')
-            ->with('users', $users);
+            ->with(['users' => $users]);
     }
 
     /**
@@ -43,7 +45,8 @@ class UserController extends AppBaseController
      */
     public function create()
     {
-        return view('users.create');
+        $roles = Role::all();
+        return view('users.create')->with(["roles" => $roles]);;
     }
 
     /**
@@ -56,9 +59,11 @@ class UserController extends AppBaseController
     public function store(CreateUserRequest $request)
     {
         $input = $request->all();
-
+        $input["password"] = bcrypt($input["password"]);
+        $role_ids = $input["roles"];
+        unset($input["roles"]);
         $user = $this->userRepository->create($input);
-
+        $user->syncRoles($role_ids);
         Flash::success('User saved successfully.');
 
         return redirect(route('users.index'));
@@ -77,7 +82,6 @@ class UserController extends AppBaseController
 
         if (empty($user)) {
             Flash::error('User not found');
-
             return redirect(route('users.index'));
         }
 
@@ -94,14 +98,13 @@ class UserController extends AppBaseController
     public function edit($id)
     {
         $user = $this->userRepository->findWithoutFail($id);
-
+        $roles = Role::all();
+        $roles_user = $user->roles;
         if (empty($user)) {
             Flash::error('User not found');
-
             return redirect(route('users.index'));
         }
-
-        return view('users.edit')->with('user', $user);
+        return view('users.edit')->with(['user'=> $user,"roles"=>$roles,"user_roles"=>$roles_user]);
     }
 
     /**
@@ -115,17 +118,18 @@ class UserController extends AppBaseController
     public function update($id, UpdateUserRequest $request)
     {
         $user = $this->userRepository->findWithoutFail($id);
-
+        $input = $request->all();
+        $input["password"] = bcrypt($input["password"]);
+        $role_ids = $input["roles"];
+        unset($input["roles"]);
         if (empty($user)) {
             Flash::error('User not found');
-
             return redirect(route('users.index'));
         }
-
-        $user = $this->userRepository->update($request->all(), $id);
+        $user = $this->userRepository->update($input, $id);
+        $user->syncRoles($role_ids);
 
         Flash::success('User updated successfully.');
-
         return redirect(route('users.index'));
     }
 

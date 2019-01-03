@@ -46,6 +46,11 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+
+        if ($exception instanceof \Spatie\Permission\Exceptions\UnauthorizedException) {
+            echo "vous n'avez la permission d'effectuer cette tache!!. svp contacter l'admin";die;
+        }
+
         return parent::render($request, $exception);
     }
 }

@@ -32,3 +32,11 @@ Route::resource('parties', 'PartieController');
 Route::resource('users', 'UserController');
 
 Route::resource('parties', 'PartieController');
+
+Route::prefix('admin')->group(function () {
+    Route::any('panel', "AdminController@index");
+});//->middleware("Admin");
+
+Route::resource('roles', 'RoleController');
+
+Route::resource('permissions', 'PermissionController');

@@ -106,7 +106,7 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Accueil</a>
+                        {{--<a href="{{ url('/home') }}">Accueil</a>--}}
                     @else
                         <a href="{{ route('login') }}">Connexion</a>
 
@@ -123,8 +123,21 @@
                 </div>
 
                 <div class="links">
-                    <a class="button button2" href="{{url("control")}}">Administration</a>
+                @auth
+                    
+                    @if(auth()->user()->hasRole('admin|chef d\'agence'))
+                        <a class="button button2" href="{{url("admin/panel")}}">Administration</a>
+                    @else
+                        @if(auth()->user()->hasRole("joueur"))
+                            <a class="button button3" href="{{url('joueur/compteMonetaire')}}">Mon Compte</a>
+                        @endif
+                    @endif
+                    @if(auth()->user()->hasRole('responsable des jeux'))
+                        <a class="button button3" href="{{url('responsable_jeu')}}">Demarrer une activité</a>
+                    @endif
+                @else 
                     <a class="button button3" href="{{route('register')}}">connexion</a>
+                @endauth
                 </div>
             </div>
         </div>

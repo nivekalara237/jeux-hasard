@@ -34,12 +34,11 @@
 <body class="hold-transition register-page">
 <div class="register-box">
     <div class="register-logo">
-        <a href="{{ url('/home') }}"><b>{{config("app.name")}} </b>Connexion</a>
+        <a href="{{ url('/home') }}"><b>{{config("app.name")}} </b></a>
     </div>
 
     <div class="register-box-body">
         <p class="login-box-msg">Enregistrer un nouvel utilisateur</p>
-
         <form method="post" action="{{ url('/register') }}">
 
             {!! csrf_field() !!}
@@ -103,19 +102,19 @@
                 <div class="col-xs-8">
                     <div class="checkbox icheck">
                         <label>
-                            <input type="checkbox"> I agree to the <a href="#">terms</a>
+                            <input type="checkbox"> J'accepte les <a href="#">conditions d'utilisations</a>
                         </label>
                     </div>
                 </div>
                 <!-- /.col -->
                 <div class="col-xs-4">
-                    <button type="submit" class="btn btn-primary btn-block btn-flat">Register</button>
+                    <button type="submit" class="btn btn-primary btn-block btn-flat">Enregistrer</button>
                 </div>
                 <!-- /.col -->
             </div>
         </form>
 
-        <a href="{{ url('/login') }}" class="text-center">I already have a membership</a>
+        <a href="{{ url('/login') }}" class="text-center">je suis déjà membre</a>
     </div>
     <!-- /.form-box -->
 </div>

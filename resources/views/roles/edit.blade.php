@@ -1,12 +1,14 @@
 @extends('layouts.app')
+
 @section("css")
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="{{asset('css/multi-select.css')}}">
 @endsection
+
 @section('content')
     <section class="content-header">
         <h1>
-            User
+            Role
         </h1>
    </section>
    <div class="content">
@@ -14,9 +16,10 @@
        <div class="box box-primary">
            <div class="box-body">
                <div class="row">
-                   {!! Form::model($user, ['route' => ['users.update', $user->id], 'method' => 'patch']) !!}
+                   {!! Form::model($role, ['route' => ['roles.update', $role->id], 'method' => 'patch']) !!}
 
-                        @include('users.fields')
+                        @include('roles.fields')
+                        
 
                    {!! Form::close() !!}
                </div>
@@ -24,17 +27,18 @@
        </div>
    </div>
 @endsection
+
 @section("scripts")
 <script src="{{asset("js/jquery.multi-select.js")}}"></script>
 <script>
-$('#roles').multiSelect();
+$('#permissions').multiSelect();
 $('#select-all').click(function(e){
-    $('#roles').multiSelect('select_all');
+    $('#permissions').multiSelect('select_all');
     e.preventDefault();
     return false;
 });
 $('#deselect-all').click(function(e){
-    $('#roles').multiSelect('deselect_all');
+    $('#permissions').multiSelect('deselect_all');
     e.preventDefault();
     return false;
 });

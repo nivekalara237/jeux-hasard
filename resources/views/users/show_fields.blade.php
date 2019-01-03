@@ -25,20 +25,15 @@
 <!-- Email Verified At Field -->
 <div class="form-group">
     {!! Form::label('email_verified_at', 'Email Verified At:') !!}
-    <p>{!! $user->email_verified_at !!}</p>
+    <p style="color:red">{!! empty($user->email_verified_at)?"en attente":$user->email_verified_at !!}</p>
 </div>
 
 <!-- Password Field -->
 <div class="form-group">
     {!! Form::label('password', 'Password:') !!}
-    <p>{!! $user->password !!}</p>
+    <p>{!! "********" !!}</p>
 </div>
 
-<!-- Remember Token Field -->
-<div class="form-group">
-    {!! Form::label('remember_token', 'Remember Token:') !!}
-    <p>{!! $user->remember_token !!}</p>
-</div>
 
 <!-- Created At Field -->
 <div class="form-group">
