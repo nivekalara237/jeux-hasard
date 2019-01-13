@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Jeu
+            Compte Monetaire
         </h1>
    </section>
    <div class="content">
@@ -11,9 +11,9 @@
        <div class="box box-primary">
            <div class="box-body">
                <div class="row">
-                   {!! Form::model($jeu, ['route' => ['jeus.update', $jeu->id], 'method' => 'patch','enctype' => 'multipart/form-data']) !!}
+                   {!! Form::model($compteMonetaire, ['route' => ['compteMonetaires.update', $compteMonetaire->id], 'method' => 'patch']) !!}
 
-                        @include('jeus.fields')
+                        @include('compte_monetaires.fields')
 
                    {!! Form::close() !!}
                </div>

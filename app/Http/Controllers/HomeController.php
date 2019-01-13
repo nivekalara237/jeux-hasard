@@ -23,6 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $jeux = \App\Models\Jeu::all();
+        return view('home',compact("jeux"));
     }
 }

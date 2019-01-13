@@ -47,7 +47,8 @@ class User extends Authenticatable
         'email',
         'email_verified_at',
         'password',
-        'remember_token'
+        'remember_token',
+        "avatar"
     ];
 
     /**
@@ -60,7 +61,8 @@ class User extends Authenticatable
         'telephone' => 'string',
         'email' => 'string',
         'password' => 'string',
-        'remember_token' => 'string'
+        'remember_token' => 'string',
+        'avatar' => 'string'
     ];
 
     /**
@@ -77,7 +79,7 @@ class User extends Authenticatable
      **/
     public function compteMonetaires()
     {
-        return $this->hasMany(\App\Models\CompteMonetaire::class);
+        return $this->hasMany(\App\Models\CompteMonetaire::class,"joueur_id");
     }
 
     /**
@@ -91,8 +93,28 @@ class User extends Authenticatable
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      **/
+    public function operations()
+    {
+        if($this->firstCM()!=null){
+            return $this->firstCM()->operations;
+        }else{
+            return  new \App\Models\Operation;
+        }
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
     public function parties()
     {
         return $this->hasMany(\App\Models\Partie::class);
+    }
+
+    public function firstCM()
+    {
+        if($this->compteMonetaires->count()!=0){
+            return $this->compteMonetaires->first();
+        }
+        return new \App\Models\CompteMonetaire;
     }
 }

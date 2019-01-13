@@ -28,6 +28,11 @@
     {!! Form::number('mise_unitaire', null, ['class' => 'form-control']) !!}
 </div>
 
+<div class="form-group col-sm-6">
+    {!! Form::label('photo', 'Une Photo du jeux:') !!}
+    <input type="file" name="photo" id="photo" class="form-control">
+</div>
+
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}

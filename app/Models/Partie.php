@@ -68,7 +68,7 @@ class Partie extends Model
      **/
     public function user()
     {
-        return $this->belongsTo(\App\Models\User::class);
+        return $this->belongsTo(\App\Models\User::class,"superviseur_id");
     }
 
     /**

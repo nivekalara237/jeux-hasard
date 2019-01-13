@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use Image;
 
 class JeuController extends AppBaseController
 {
@@ -56,6 +57,18 @@ class JeuController extends AppBaseController
     public function store(CreateJeuRequest $request)
     {
         $input = $request->all();
+
+        if($request->hasFile("photo")){
+            $originalImage= $request->file('photo');
+            $thumbnailImage = Image::make($originalImage);
+            //$thumbnailPath = public_path().'/img/avatars/thumbnails/';
+            $originalPath = public_path().'/img/';
+            $fname = 'jeu_'.time();
+            $thumbnailImage->save($originalPath.$fname);
+            //$thumbnailImage->resize(150,150);
+            //$thumbnailImage->save($thumbnailPath.$fname); 
+            $input["photo"] = $fname;
+        }
 
         $jeu = $this->jeuRepository->create($input);
 
@@ -115,6 +128,7 @@ class JeuController extends AppBaseController
     public function update($id, UpdateJeuRequest $request)
     {
         $jeu = $this->jeuRepository->findWithoutFail($id);
+        $input = $request->all();
 
         if (empty($jeu)) {
             Flash::error('Jeu not found');
@@ -122,8 +136,24 @@ class JeuController extends AppBaseController
             return redirect(route('jeus.index'));
         }
 
-        $jeu = $this->jeuRepository->update($request->all(), $id);
+        if($request->hasFile("photo")){
+            
+            $originalImage= $request->file('photo');
+            $thumbnailImage = Image::make($originalImage);
+            //$thumbnailPath = public_path().'/img/avatars/thumbnails/';
+            $originalPath = public_path().'/img/';
+            $fname = 'jeu_'.time().$originalImage->getClientOriginalName();
+            $thumbnailImage->save($originalPath.$fname);
+            //$thumbnailImage->resize(150,150);
+            //$thumbnailImage->save($thumbnailPath.$fname); 
+            $input["photo"] = $fname;
+            @unlink(public_path()."/img/".$jeu->photo);
+        }
 
+        //dd($input);
+        
+        $jeu = $this->jeuRepository->update($input, $id);
+        
         Flash::success('Jeu updated successfully.');
 
         return redirect(route('jeus.index'));

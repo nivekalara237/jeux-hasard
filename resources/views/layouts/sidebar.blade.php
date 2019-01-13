@@ -6,8 +6,13 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="{{asset('img/default_avatar.png')}}" class="img-circle"
-                     alt="User Image"/>
+                @if(!empty(auth()->user()->avatar))
+                <img src="{{asset('img/avatars/thumbnails/'.auth()->user()->avatar)}}"
+                    class="user-image" alt="User Image"/>
+                @else
+                <img src="{{asset('img/default_avatar.png')}}"
+                    class="user-image" alt="User Image"/>
+                @endif
             </div>
             <div class="pull-left info">
                 @if (Auth::guest())

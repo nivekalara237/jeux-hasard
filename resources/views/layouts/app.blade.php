@@ -42,6 +42,7 @@
             </a>
 
             <!-- Header Navbar -->
+            
             <nav class="navbar navbar-static-top" role="navigation">
                 <!-- Sidebar toggle button-->
                 <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
@@ -55,8 +56,13 @@
                             <!-- Menu Toggle Button -->
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <!-- The user image in the navbar-->
+                                @if(!empty(auth()->user()->avatar))
+                                <img src="{{asset('img/avatars/thumbnails/'.auth()->user()->avatar)}}"
+                                    class="user-image" alt="User Image"/>
+                                @else
                                 <img src="{{asset('img/default_avatar.png')}}"
-                                     class="user-image" alt="User Image"/>
+                                    class="user-image" alt="User Image"/>
+                                @endif
                                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
                                 <span class="hidden-xs">{!! Auth::user()->name !!}</span>
                             </a>
@@ -64,7 +70,7 @@
                                 <!-- The user image in the menu -->
                                 <li class="user-header">
                                     <img src="{{asset('img/default_avatar.png')}}"
-                                         class="img-circle" alt="User Image"/>
+                                        class="img-circle" alt="User Image"/>
                                     <p>
                                         {!! Auth::user()->name !!}
                                         <small>Membre depuis {!! Auth::user()->created_at->format('M. Y') !!}</small>
@@ -90,10 +96,13 @@
                     </ul>
                 </div>
             </nav>
+            
         </header>
 
         <!-- Left side column. contains the logo and sidebar -->
-        @include('layouts.sidebar')
+        @if(!auth()->user()->hasRole("joueur"))
+            @include('layouts.sidebar')
+        @endif
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             @yield('content')

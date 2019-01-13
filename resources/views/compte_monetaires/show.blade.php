@@ -3,20 +3,15 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Jeu
+            Compte Monetaire
         </h1>
     </section>
     <div class="content">
-        @include('adminlte-templates::common.errors')
         <div class="box box-primary">
-
             <div class="box-body">
-                <div class="row">
-                    {!! Form::open(['route' => 'jeus.store','enctype' => 'multipart/form-data']) !!}
-
-                        @include('jeus.fields')
-
-                    {!! Form::close() !!}
+                <div class="row" style="padding-left: 20px">
+                    @include('compte_monetaires.show_fields')
+                    <a href="{!! route('compteMonetaires.index') !!}" class="btn btn-default">Back</a>
                 </div>
             </div>
         </div>

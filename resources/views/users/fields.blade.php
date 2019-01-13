@@ -21,6 +21,7 @@
     {!! Form::label('password', 'Password:') !!}
     {!! Form::password('password', ['class' => 'form-control']) !!}
 </div>
+
 <div class="form-group col-sm-6">
     {!! Form::label('roles', 'Roles:') !!}
     [<a href='#' id='select-all'>sélectionner tout</a> | 
@@ -38,7 +39,6 @@
         @endif
     </select>
 </div>
-
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}

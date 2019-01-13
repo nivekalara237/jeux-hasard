@@ -33,6 +33,12 @@ Route::resource('users', 'UserController');
 
 Route::resource('parties', 'PartieController');
 
+
+Route::group(["middleware"=>"role:".config("app.role")["responsable_jeux"]],function(){
+    Route::get('partie/demarrer/{id}', 'PartieController@demarrer');
+    Route::get('partie/arreter/{id}', 'PartieController@arreter');
+});
+
 Route::prefix('admin')->group(function () {
     Route::any('panel', "AdminController@index");
 });//->middleware("Admin");
@@ -40,3 +46,10 @@ Route::prefix('admin')->group(function () {
 Route::resource('roles', 'RoleController');
 
 Route::resource('permissions', 'PermissionController');
+
+Route::resource('compteMonetaires', 'CompteMonetaireController');
+Route::group(["middleware"=>"role:".config("app.role")["joueur"]],function(){
+    Route::get("joueur_panel","JoueurController@panel")->name("joueur.panel");
+    Route::post("joueur/compte/operation/{id}","CompteMonetaireController@operation")->name("operation.sur.compte");
+    Route::patch("user/updateProfile","JoueurController@updateProfile")->name("user.updateProfile");
+});

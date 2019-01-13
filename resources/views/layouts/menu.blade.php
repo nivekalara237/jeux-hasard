@@ -27,3 +27,7 @@
     <a href="{!! route('permissions.index') !!}"><i class="fa fa-edit"></i><span>Permissions</span></a>
 </li>
 
+<li class="{{ Request::is('compteMonetaires*') ? 'active' : '' }}">
+    <a href="{!! route('compteMonetaires.index') !!}"><i class="fa fa-edit"></i><span>Compte Monetaires</span></a>
+</li>
+

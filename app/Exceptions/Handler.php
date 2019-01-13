@@ -48,7 +48,9 @@ class Handler extends ExceptionHandler
     {
 
         if ($exception instanceof \Spatie\Permission\Exceptions\UnauthorizedException) {
-            echo "vous n'avez la permission d'effectuer cette tache!!. svp contacter l'admin";die;
+            //echo "vous n'avez la permission d'effectuer cette tache!!. svp contacter l'admin";die;
+            //return  response()->make('errors.401', [], 401);
+            abort(401, 'Sorry, you are not authorized to access this page.');
         }
 
         return parent::render($request, $exception);

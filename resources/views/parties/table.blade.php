@@ -2,10 +2,10 @@
     <thead>
         <tr>
             <th>Libelle</th>
-        <th>Description</th>
+        <th>Participants</th>
         <th>Jeu Id</th>
         <th>Statut</th>
-        <th>Superviseur Id</th>
+        <th>Superviseur</th>
             <th colspan="3">Action</th>
         </tr>
     </thead>
@@ -13,15 +13,23 @@
     @foreach($parties as $partie)
         <tr>
             <td>{!! $partie->libelle !!}</td>
-            <td>{!! $partie->description !!}</td>
-            <td>{!! $partie->jeu_id !!}</td>
-            <td>{!! $partie->statut !!}</td>
-            <td>{!! $partie->superviseur_id !!}</td>
+            <td>
+                <ol>
+                
+                @foreach($partie->participations as $pa)
+                    <li>{{$pa->user->name}} &nbsp;  [<span style="color:green">mise = {{$pa->mise}}</span>]</li>
+                @endforeach
+                
+                </ol>
+            </td>
+            <td>{!! $partie->jeu->libelle !!}</td>
+            <td>{!! $partie->statut==1?"en cour...":"finie!!" !!}</td>
+            <td>{!! $partie->user->name !!}</td>
             <td>
                 {!! Form::open(['route' => ['parties.destroy', $partie->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>
-                    <a href="{!! route('parties.show', [$partie->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
-                    <a href="{!! route('parties.edit', [$partie->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
+                    <a href="{!! url('partie/demarrer/'.$partie->id) !!}" class='btn btn-primary btn-xs'>Demarrer</a>&nbsp;
+                    <a href="{!! url('partie/arreter/'.$partie->id) !!}" class='btn btn-default btn-xs'>Arreter</a>&nbsp;
                     {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
                 </div>
                 {!! Form::close() !!}

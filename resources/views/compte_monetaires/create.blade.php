@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Jeu
+            Compte Monetaire
         </h1>
     </section>
     <div class="content">
@@ -12,9 +12,9 @@
 
             <div class="box-body">
                 <div class="row">
-                    {!! Form::open(['route' => 'jeus.store','enctype' => 'multipart/form-data']) !!}
+                    {!! Form::open(['route' => 'compteMonetaires.store']) !!}
 
-                        @include('jeus.fields')
+                        @include('compte_monetaires.fields')
 
                     {!! Form::close() !!}
                 </div>

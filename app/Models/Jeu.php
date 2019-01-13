@@ -63,7 +63,8 @@ class Jeu extends Model
         'description',
         'max_joueur',
         'min_joueur',
-        'mise_unitaire'
+        'mise_unitaire',
+        "photo"
     ];
 
     /**
@@ -77,7 +78,8 @@ class Jeu extends Model
         'description' => 'string',
         'max_joueur' => 'integer',
         'min_joueur' => 'integer',
-        'mise_unitaire' => 'float'
+        'mise_unitaire' => 'float',
+        'photo' => "string"
     ];
 
     /**

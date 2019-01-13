@@ -49,7 +49,9 @@ class Operation extends Model
         'libelle',
         'mot',
         'compte_monetaire_id',
-        'type'
+        'type',
+        "montant",
+        "moyen"
     ];
 
     /**
@@ -61,7 +63,9 @@ class Operation extends Model
         'libelle' => 'string',
         'mot' => 'string',
         'compte_monetaire_id' => 'integer',
-        'type' => 'string'
+        'type' => 'string',
+        "montant" => 'float',
+        "moyen" => 'string'
     ];
 
     /**

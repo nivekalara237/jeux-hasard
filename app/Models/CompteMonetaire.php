@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @SWG\Definition(
- *      definition="Participation",
+ *      definition="CompteMonetaire",
  *      required={""},
  *      @SWG\Property(
  *          property="id",
@@ -16,24 +16,23 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="mise",
- *          description="mise",
+ *          property="solde",
+ *          description="solde",
  *          type="number",
  *          format="float"
  *      ),
  *      @SWG\Property(
- *          property="partie_id",
- *          description="partie_id",
- *          type="integer",
- *          format="int32"
+ *          property="type_paiement",
+ *          description="type_paiement",
+ *          type="string"
  *      )
  * )
  */
-class Participation extends Model
+class CompteMonetaire extends Model
 {
     use SoftDeletes;
 
-    public $table = 'participation';
+    public $table = 'compte_monetaire';
     
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
@@ -43,9 +42,9 @@ class Participation extends Model
 
 
     public $fillable = [
-        'mise',
-        'joueur_id',
-        'partie_id'
+        'solde',
+        'type_paiement',
+        'joueur_id'
     ];
 
     /**
@@ -55,8 +54,8 @@ class Participation extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'mise' => 'float',
-        'partie_id' => 'integer'
+        'solde' => 'float',
+        'type_paiement' => 'string'
     ];
 
     /**
@@ -71,16 +70,16 @@ class Participation extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function partie()
+    public function user()
     {
-        return $this->belongsTo(\App\Models\Partie::class);
+        return $this->belongsTo(\App\Models\User::class);
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      **/
-    public function user()
+    public function operations()
     {
-        return $this->belongsTo(\App\Models\User::class,"joueur_id");
+        return $this->hasMany(\App\Models\Operation::class);
     }
 }

@@ -24,7 +24,8 @@ class JeuRepository extends BaseRepository
         'description',
         'max_joueur',
         'min_joueur',
-        'mise_unitaire'
+        'mise_unitaire',
+        'photo'
     ];
 
     /**

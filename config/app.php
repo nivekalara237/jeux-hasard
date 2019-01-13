@@ -55,6 +55,18 @@ return [
     'url' => env('APP_URL', 'http://localhost'),
 
     'asset_url' => env('ASSET_URL', null),
+    'role'=>[
+        "admin"=>"admin systeme",
+        "responsable_jeux"=>"responsable des jeux",
+        "joueur"=>"joueur",
+        "chef_agence"=>"chef d'agence"
+    ],
+
+    'pay'=>[
+        "mom"=>"MTN Mobile Money",
+        "OM"=>"Orange Money",
+        "espece"=>"Argent comptant"
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -175,6 +187,7 @@ return [
         Way\Generators\GeneratorsServiceProvider::class,
         Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -237,7 +250,7 @@ return [
         'Html'      => Collective\Html\HtmlFacade::class,
         'Flash'     => Laracasts\Flash\Flash::class,
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
-
+        'Image' => Intervention\Image\Facades\Image::class,
     ],
 
 ];

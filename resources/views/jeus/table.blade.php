@@ -1,6 +1,7 @@
 <table class="table table-responsive" id="jeus-table">
     <thead>
         <tr>
+            <th>Photo</th>
             <th>Libelle</th>
         <th>Description</th>
         <th>Max Joueur</th>
@@ -12,6 +13,11 @@
     <tbody>
     @foreach($jeus as $jeu)
         <tr>
+        @if(!empty($jeu->photo))
+            <td><img src="{!! asset("img/".$jeu->photo) !!}" class="img img-fluid" style="height:200px;width:200px" alt=""></td>
+        @else
+            <td><img src="{!! asset("img/logo256x256.png") !!}" class="img img-fluid" style="height:200px;width:200px" alt=""></td>
+        @endif
             <td>{!! $jeu->libelle !!}</td>
             <td>{!! $jeu->description !!}</td>
             <td>{!! $jeu->max_joueur !!}</td>

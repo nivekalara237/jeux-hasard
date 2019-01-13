@@ -1,26 +1,35 @@
 <!-- Libelle Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('libelle', 'Libelle:') !!}
-    {!! Form::text('libelle', null, ['class' => 'form-control']) !!}
+    {!! Form::label('montant', 'Montant:') !!}
+    {!! Form::number('montant', null, ['class' => 'form-control',"required" => "on"]) !!}
+</div>
+<div class="form-group col-sm-6">
+    <label for="type">Type Operation:</label>
+    <select class="form-control" name="type" required id="type">
+        <option value="credit" selected> Credit </option>
+        <option value="debit" > Debit </option>
+    </select>
 </div>
 
+<div class="form-group col-sm-6">
+    <label for="type">Moyen de paiement:</label>
+    <select class="form-control" name="moyen"id="type">
+        <option value="OM" selected> Orange Money </option>
+        <option value="momo" > MTN mobile money </option>
+        <option value="espece" > Par Espèce </option>
+    </select>
+</div>
+<div class="form-group col-sm-6 col-lg-6">
+    {!! Form::label('current', 'Solde current:') !!}
+    {!! Form::text('current', auth()->user()->firstCM()->solde, ['class' => 'form-control',"readonly"]) !!}
+</div>
 <!-- Mot Field -->
-<div class="form-group col-sm-12 col-lg-12">
-    {!! Form::label('mot', 'Mot:') !!}
+{{--<div class="form-group col-sm-6 col-lg-6">
+    {!! Form::label('mot', 'Un Mot:') !!}
     {!! Form::textarea('mot', null, ['class' => 'form-control']) !!}
-</div>
+</div>--}}
 
-<!-- Compte Monetaire Id Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('compte_monetaire_id', 'Compte Monetaire Id:') !!}
-    {!! Form::number('compte_monetaire_id', null, ['class' => 'form-control']) !!}
-</div>
 
-<!-- Type Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('type', 'Type:') !!}
-    {!! Form::text('type', null, ['class' => 'form-control']) !!}
-</div>
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12">

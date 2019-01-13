@@ -23,7 +23,9 @@ class OperationRepository extends BaseRepository
         'libelle',
         'mot',
         'compte_monetaire_id',
-        'type'
+        'type',
+        "montant",
+        "moyen"
     ];
 
     /**

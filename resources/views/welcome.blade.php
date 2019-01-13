@@ -124,19 +124,18 @@
 
                 <div class="links">
                 @auth
-                    
                     @if(auth()->user()->hasRole('admin|chef d\'agence'))
                         <a class="button button2" href="{{url("admin/panel")}}">Administration</a>
                     @else
                         @if(auth()->user()->hasRole("joueur"))
-                            <a class="button button3" href="{{url('joueur/compteMonetaire')}}">Mon Compte</a>
+                            <a class="button button3" href="{{url('joueur_panel')}}">Mon Compte</a>
                         @endif
                     @endif
                     @if(auth()->user()->hasRole('responsable des jeux'))
                         <a class="button button3" href="{{url('responsable_jeu')}}">Demarrer une activité</a>
                     @endif
                 @else 
-                    <a class="button button3" href="{{route('register')}}">connexion</a>
+                    <a class="button button3" href="{{route('login')}}">connexion</a>
                 @endauth
                 </div>
             </div>
